@@ -17,6 +17,21 @@ export const subjects = [
 
 export const questionBank: Question[] = [
   // ==================== 1과목: 빅데이터 분석 기획 ====================
+  // 2025년 4월 기출
+  {
+    id: 's1-2025-04-01',
+    subject: '1과목: 빅데이터 분석 기획',
+    question: '빅데이터 분석과 관련된 설명으로 옳지 않은 것은?',
+    options: [
+      '정형, 반정형, 비정형 데이터로 이루어져 있다.',
+      '데이터 처리 시점이 사전 처리에서 사후 처리로 이동하였다.',
+      '데이터 분석 시 주로 JDBC, OLTP 기술을 사용하여 분석한다.',
+      '데이터로부터 학습한 알려진 특성을 활용하여 예측할 수 있다.',
+    ],
+    answer: 2,
+    explanation: 'OLTP는 트랜잭션 처리용이며, 빅데이터 분석은 OLAP, Hadoop, Spark 등을 사용합니다. JDBC는 단순 DB 연결 API입니다.',
+    category: 'bigdata',
+  },
   {
     id: 's1-001',
     subject: '1과목: 빅데이터 분석 기획',
