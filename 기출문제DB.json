@@ -1,0 +1,29 @@
+{
+  "metadata": {
+    "exam": "빅데이터분석기사",
+    "lastUpdated": "2026-03-07"
+  },
+  "rounds": {
+    "2025년4월": {
+      "date": "2025-04",
+      "totalQuestions": 80,
+      "questions": [
+        {
+          "no": 1,
+          "subject": "1과목",
+          "question": "빅데이터 분석과 관련된 설명으로 옳지 않은 것은?",
+          "options": [
+            "정형, 반정형, 비정형 데이터로 이루어져 있다.",
+            "데이터 처리 시점이 사전 처리에서 사후 처리로 이동하였다.",
+            "데이터 분석 시 주로 JDBC, OLTP 기술을 사용하여 분석한다.",
+            "데이터로부터 학습한 알려진 특성을 활용하여 예측할 수 있다."
+          ],
+          "answer": 3,
+          "explanation": "OLTP는 트랜잭션 처리용, 빅데이터 분석은 OLAP/Hadoop/Spark 사용. JDBC는 단순 DB 연결 API.",
+          "category": "bigdata",
+          "keywords": ["OLTP", "OLAP", "빅데이터 분석 기술"]
+        }
+      ]
+    }
+  }
+}
