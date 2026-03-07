@@ -1,0 +1,32 @@
+{
+  "metadata": {
+    "exam": "빅데이터분석기사",
+    "created": "2026-03-04",
+    "lastUpdated": "2026-03-04"
+  },
+  "questions": [],
+  "weakPoints": [],
+  "stats": {
+    "total": 0,
+    "correct": 0,
+    "byRound": {},
+    "byCategory": {
+      "bigdata": { "total": 0, "correct": 0 },
+      "data": { "total": 0, "correct": 0 },
+      "stats": { "total": 0, "correct": 0 },
+      "ml": { "total": 0, "correct": 0 },
+      "sql": { "total": 0, "correct": 0 },
+      "preprocess": { "total": 0, "correct": 0 },
+      "visual": { "total": 0, "correct": 0 },
+      "hadoop": { "total": 0, "correct": 0 },
+      "python": { "total": 0, "correct": 0 },
+      "law": { "total": 0, "correct": 0 }
+    },
+    "bySubject": {
+      "1과목": { "total": 0, "correct": 0 },
+      "2과목": { "total": 0, "correct": 0 },
+      "3과목": { "total": 0, "correct": 0 },
+      "4과목": { "total": 0, "correct": 0 }
+    }
+  }
+}
