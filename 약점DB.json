@@ -64,6 +64,18 @@
         "keyPoint": "주통시비 (주제지향성, 통합성, 시계열성, 비휘발성)",
         "correctCount": 0,
         "addedAt": "2026-03-15"
+      },
+      {
+        "id": "w006",
+        "round": "2025년4월",
+        "no": 28,
+        "subject": "2과목",
+        "concept": "SVD/LSA/LDA/PCA 구분",
+        "myAnswer": 3,
+        "correctAnswer": 2,
+        "keyPoint": "LSA=SVD로 문서-단어 차원축소+잠재의미. LDA=토픽모델링. PCA=분산최대화",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
       }
     ],
     "guessed": [
@@ -86,6 +98,61 @@
         "concept": "가명정보 vs 익명정보 vs 속성정보",
         "correctAnswer": 4,
         "keyPoint": "가명=결합시 식별, 익명=결합해도 불가, 속성=특성(나이,성별)",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g003",
+        "round": "2025년4월",
+        "no": 21,
+        "subject": "2과목",
+        "concept": "변수 선택 알고리즘 (전후단)",
+        "correctAnswer": 4,
+        "keyPoint": "전진(추가), 후진(제거), 단계별(추가+제거). 상호정보량은 지표",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g004",
+        "round": "2025년4월",
+        "no": 22,
+        "subject": "2과목",
+        "concept": "이항분포 평균/분산 공식",
+        "correctAnswer": 2,
+        "keyPoint": "평균=np, 분산=np(1-p)=npq. 암기: 평np 분npq",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g005",
+        "round": "2025년4월",
+        "no": 23,
+        "subject": "2과목",
+        "concept": "모집단/표본/불편추정량",
+        "correctAnswer": 3,
+        "keyPoint": "표본평균≠모집단평균(추정치일뿐). 불편추정량=편향없는 추정. 분산은 n-1로 나눔",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g006",
+        "round": "2025년4월",
+        "no": 24,
+        "subject": "2과목",
+        "concept": "표준편차와 Z-score",
+        "correctAnswer": 3,
+        "keyPoint": "Z=(x-μ)/σ, f(x)=ax+b면 a=1/σ, b=-μ/σ",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g007",
+        "round": "2025년4월",
+        "no": 27,
+        "subject": "2과목",
+        "concept": "표본평균 확률분포 계산",
+        "correctAnswer": 2,
+        "keyPoint": "y=1→p², y=0→2p(1-p)(2가지경우!), y=-1→(1-p)²",
         "correctCount": 0,
         "addedAt": "2026-03-15"
       }
