@@ -4,8 +4,92 @@
     "graduateThreshold": 5
   },
   "weakPoints": {
-    "wrong": [],
-    "guessed": []
+    "wrong": [
+      {
+        "id": "w001",
+        "round": "2025년4월",
+        "no": 2,
+        "subject": "1과목",
+        "concept": "집중형 vs 분산형 조직구조",
+        "myAnswer": 3,
+        "correctAnswer": 1,
+        "keyPoint": "집중형=느림(본사), 분산형=빠름(각부서)",
+        "correctCount": 0,
+        "addedAt": "2026-03-07"
+      },
+      {
+        "id": "w002",
+        "round": "2025년4월",
+        "no": 3,
+        "subject": "1과목",
+        "concept": "개인정보 vs 가명정보 vs 익명정보",
+        "myAnswer": 4,
+        "correctAnswer": 2,
+        "keyPoint": "반드시 익명X, 가명/동의도 OK",
+        "correctCount": 0,
+        "addedAt": "2026-03-07"
+      },
+      {
+        "id": "w003",
+        "round": "2025년4월",
+        "no": 6,
+        "subject": "1과목",
+        "concept": "비식별화 - 총계처리",
+        "myAnswer": 1,
+        "correctAnswer": 2,
+        "keyPoint": "총계처리는 수치 비식별에 유리 (합계/평균)",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "w004",
+        "round": "2025년4월",
+        "no": 13,
+        "subject": "1과목",
+        "concept": "과제 도출 방식 (최솔통발)",
+        "myAnswer": 3,
+        "correctAnswer": 1,
+        "keyPoint": "최적화(OO), 솔루션(OX), 통찰(XO), 발견(XX)",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "w005",
+        "round": "2025년4월",
+        "no": 14,
+        "subject": "1과목",
+        "concept": "데이터 웨어하우스 4대 특징",
+        "myAnswer": 4,
+        "correctAnswer": 2,
+        "keyPoint": "주통시비 (주제지향성, 통합성, 시계열성, 비휘발성)",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      }
+    ],
+    "guessed": [
+      {
+        "id": "g001",
+        "round": "2025년4월",
+        "no": 8,
+        "subject": "1과목",
+        "concept": "빅데이터 플랫폼 계층 구조",
+        "correctAnswer": 4,
+        "keyPoint": "인프라=물리자원(서버,스토리지,네트워크), 플랫폼=Hadoop/Spark",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g002",
+        "round": "2025년4월",
+        "no": 11,
+        "subject": "1과목",
+        "concept": "가명정보 vs 익명정보 vs 속성정보",
+        "correctAnswer": 4,
+        "keyPoint": "가명=결합시 식별, 익명=결합해도 불가, 속성=특성(나이,성별)",
+        "correctCount": 0,
+        "addedAt": "2026-03-15"
+      }
+    ]
   },
   "graduated": []
 }
