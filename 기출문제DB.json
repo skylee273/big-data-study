@@ -427,6 +427,81 @@
           "explanation": "LSA=SVD로 문서-단어 행렬 차원축소+잠재의미 추출. LDA는 토픽모델링(확률적)",
           "category": "ml",
           "keywords": ["SVD", "LSA", "LDA", "PCA", "차원축소", "텍스트마이닝"]
+        },
+        {
+          "no": 29,
+          "subject": "2과목",
+          "question": "상자그림(Boxplot)에서 IQR(Interquartile Range, 사분위 범위)에 대한 설명으로 잘못된 것은?",
+          "options": [
+            "IQR은 데이터의 중앙 50% 범위를 나타낸다.",
+            "IQR은 Q1 - Q3로 계산된다.",
+            "이상치 판별에 활용된다.",
+            "Q1은 하위 25% 지점의 값이다."
+          ],
+          "answer": 2,
+          "explanation": "IQR = Q3 - Q1 (큰 값에서 작은 값 빼기). Q1-Q3는 순서가 반대라서 틀림",
+          "category": "stats",
+          "keywords": ["IQR", "상자그림", "Boxplot", "사분위수", "이상치"]
+        },
+        {
+          "no": 30,
+          "subject": "2과목",
+          "question": "다음 중 집단 내 이질적이고, 집단 간 동질적인 특성을 가진 모집단을 대상으로 표본을 추출할 때 적합한 방법은 무엇인가?",
+          "options": [
+            "군집 추출(Cluster Sampling)",
+            "층화 추출(Stratified Sampling)",
+            "단순무작위 추출(Simple Random Sampling)",
+            "체계적 추출(Systematic Sampling)"
+          ],
+          "answer": 1,
+          "explanation": "군집=집단내 이질/집단간 동질, 층화=집단내 동질/집단간 이질 (정반대!)",
+          "category": "stats",
+          "keywords": ["군집추출", "층화추출", "표본추출", "Cluster Sampling", "Stratified Sampling"]
+        },
+        {
+          "no": 31,
+          "subject": "2과목",
+          "question": "언더샘플링(undersampling)과 오버샘플링(oversampling)에 대해 잘못 설명하는 것은?",
+          "options": [
+            "오버샘플링은 소수클래스 데이터를 증가시켜 클래스 불균형 문제를 완화한다.",
+            "언더샘플링은 다수클래스 데이터를 줄여 데이터 균형을 맞춘다.",
+            "오버샘플링은 과적합(overfitting)의 위험이 있을 수 있다.",
+            "언더샘플링은 항상 오버샘플링보다 더 좋은 성능을 제공한다."
+          ],
+          "answer": 4,
+          "explanation": "'항상'이 틀림. 상황에 따라 다름. 언더샘플링은 정보손실, 오버샘플링은 과적합 위험",
+          "category": "preprocess",
+          "keywords": ["언더샘플링", "오버샘플링", "불균형데이터", "SMOTE", "과적합"]
+        },
+        {
+          "no": 32,
+          "subject": "2과목",
+          "question": "추정에 대해 잘못 설명하고 있는 것은?",
+          "options": [
+            "점추정은 모집단의 모수를 하나의 값으로 추정하는 방법이다.",
+            "점추정은 신뢰구간으로 추정하는 방법이다.",
+            "구간추정은 신뢰도가 높을수록 추정 구간이 넓어진다.",
+            "구간추정에서는 점추정이 선행된다."
+          ],
+          "answer": 2,
+          "explanation": "②는 구간추정 설명임. 점추정=하나의 값, 구간추정=신뢰구간",
+          "category": "stats",
+          "keywords": ["점추정", "구간추정", "신뢰구간", "신뢰도"]
+        },
+        {
+          "no": 33,
+          "subject": "2과목",
+          "question": "초기하분포(Hypergeometric Distribution)에 대한 설명으로 잘못된 것은?",
+          "options": [
+            "모집단은 유한하며 두 가지 범주로 구분된다.",
+            "성공 확률은 동일하다.",
+            "시행은 서로 독립적으로 이루어진다.",
+            "표본은 모집단에서 비복원추출로 선택된다."
+          ],
+          "answer": 3,
+          "explanation": "초기하분포=비복원추출→종속(비독립). 이항분포=복원추출→독립",
+          "category": "stats",
+          "keywords": ["초기하분포", "비복원추출", "이항분포", "독립", "종속"]
         }
       ]
     }

@@ -39,7 +39,7 @@ const Icons = {
   ),
 };
 
-type ViewMode = 'study' | 'bank' | 'weakness' | 'stats';
+type ViewMode = 'study' | 'bank' | 'weakness' | 'stats' | 'concepts';
 
 // 학습 진행률 타입
 interface LearningProgress {
@@ -319,6 +319,7 @@ export default function Home() {
               { id: 'bank', label: '문제은행', icon: '🏦' },
               { id: 'weakness', label: '약점', icon: '🎯' },
               { id: 'stats', label: '통계/SQL', icon: '📊' },
+              { id: 'concepts', label: '개념정리', icon: '💡' },
             ].map(tab => (
               <button
                 key={tab.id}
@@ -770,6 +771,157 @@ export default function Home() {
                       </tr>
                     </tbody>
                   </table>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        )}
+
+        {/* Concepts View */}
+        {viewMode === 'concepts' && (
+          <div className="max-w-4xl mx-auto space-y-6">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-card p-6">
+              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
+                💡 핵심 개념 정리
+              </h2>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                기출문제에서 추출한 핵심 암기 포인트
+              </p>
+
+              {/* 1과목 개념 */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-primary-500 mb-3 flex items-center gap-2">
+                  📊 1과목: 빅데이터 분석 기획
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-gray-100 dark:bg-gray-700">
+                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">개념</th>
+                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">핵심 암기</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">집중형 vs 분산형</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="text-red-600 dark:text-red-400 font-bold">집중=느림</span>(본사),
+                          <span className="text-green-600 dark:text-green-400 font-bold">분산=빠름</span>(각부서)
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50 dark:bg-gray-750">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">DW 4대 특징</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-primary-500">주통시비</span> (주제지향성, 통합성, 시계열성, 비휘발성)
+                        </td>
+                      </tr>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">과제 도출 방식</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-primary-500">최솔통발</span>:
+                          최적화(OO), 솔루션(OX), 통찰(XO), 발견(XX)
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50 dark:bg-gray-750">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">분석 기획 순서</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-primary-500">비프수위</span> (비즈니스 → 프로젝트 → 수행계획 → 위험계획)
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* 2과목 개념 */}
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold text-primary-500 mb-3 flex items-center gap-2">
+                  📈 2과목: 빅데이터 탐색
+                </h3>
+                <div className="overflow-x-auto">
+                  <table className="min-w-full border-collapse text-sm">
+                    <thead>
+                      <tr className="bg-gray-100 dark:bg-gray-700">
+                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">개념</th>
+                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">핵심 암기</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">이항분포</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-primary-500">평np 분npq</span> (평균=np, 분산=np(1-p))
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50 dark:bg-gray-750">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">LSA/LDA/PCA</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="text-blue-600 dark:text-blue-400 font-bold">LSA=SVD+잠재의미</span>,
+                          LDA=토픽모델링, PCA=분산최대화
+                        </td>
+                      </tr>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">IQR (사분위범위)</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-primary-500">Q3 - Q1</span>,
+                          이상치: ±1.5×IQR 벗어나면 이상치
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50 dark:bg-gray-750">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">표본추출</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="text-green-600 dark:text-green-400 font-bold">층화=내동외이</span>,
+                          <span className="text-orange-600 dark:text-orange-400 font-bold">군집=내이외동</span> (정반대!)
+                        </td>
+                      </tr>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">샘플링</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="text-red-600 dark:text-red-400">언더=정보손실</span>,
+                          <span className="text-orange-600 dark:text-orange-400">오버=과적합</span>
+                        </td>
+                      </tr>
+                      <tr className="bg-gray-50 dark:bg-gray-750">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">추정</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold">점추정=하나의 값</span>,
+                          <span className="font-bold">구간추정=신뢰구간</span> (신뢰도↑ 구간↑)
+                        </td>
+                      </tr>
+                      <tr className="bg-white dark:bg-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">초기하분포</td>
+                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
+                          <span className="font-bold text-red-600 dark:text-red-400">비복원 → 종속(비독립)</span>
+                          <br/>
+                          <span className="text-xs text-gray-500">(이항분포=복원→독립)</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              {/* 빠른 암기 카드 */}
+              <div className="mt-8 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30">
+                <h3 className="font-bold text-gray-900 dark:text-white mb-3">⚡ 빠른 암기</h3>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+                  {[
+                    { label: 'DW 특징', value: '주통시비' },
+                    { label: '과제도출', value: '최솔통발' },
+                    { label: '기획순서', value: '비프수위' },
+                    { label: '이항분포', value: '평np 분npq' },
+                    { label: 'IQR', value: 'Q3-Q1' },
+                    { label: '층화추출', value: '내동외이' },
+                    { label: '군집추출', value: '내이외동' },
+                    { label: '초기하', value: '비복원→종속' },
+                    { label: 'LSA', value: 'SVD+잠재의미' },
+                  ].map((item, i) => (
+                    <div key={i} className="p-2 bg-white dark:bg-gray-800 rounded-lg text-center">
+                      <div className="text-xs text-gray-500 dark:text-gray-400">{item.label}</div>
+                      <div className="font-bold text-primary-600 dark:text-primary-400">{item.value}</div>
+                    </div>
+                  ))}
                 </div>
               </div>
 

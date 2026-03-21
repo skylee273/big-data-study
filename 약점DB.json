@@ -76,6 +76,18 @@
         "keyPoint": "LSA=SVD로 문서-단어 차원축소+잠재의미. LDA=토픽모델링. PCA=분산최대화",
         "correctCount": 0,
         "addedAt": "2026-03-15"
+      },
+      {
+        "id": "w007",
+        "round": "2025년4월",
+        "no": 32,
+        "subject": "2과목",
+        "concept": "점추정 vs 구간추정",
+        "myAnswer": 3,
+        "correctAnswer": 2,
+        "keyPoint": "점추정=하나의 값, 구간추정=신뢰구간. 신뢰도↑ 구간↑",
+        "correctCount": 0,
+        "addedAt": "2026-03-21"
       }
     ],
     "guessed": [
