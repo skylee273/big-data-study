@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "lastUpdated": "2026-03-07",
+    "lastUpdated": "2026-03-22",
     "graduateThreshold": 5
   },
   "weakPoints": {
@@ -88,6 +88,18 @@
         "keyPoint": "점추정=하나의 값, 구간추정=신뢰구간. 신뢰도↑ 구간↑",
         "correctCount": 0,
         "addedAt": "2026-03-21"
+      },
+      {
+        "id": "w008",
+        "round": "2025년4월",
+        "no": 37,
+        "subject": "2과목",
+        "concept": "변수선택 통계적 방법",
+        "myAnswer": 2,
+        "correctAnswer": 4,
+        "keyPoint": "변수선택=교차검증으로 성능비교. 상관계수높은것끼리→다중공선성. 전후단(전진/후진/단계별)",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
       }
     ],
     "guessed": [
@@ -167,6 +179,144 @@
         "keyPoint": "y=1→p², y=0→2p(1-p)(2가지경우!), y=-1→(1-p)²",
         "correctCount": 0,
         "addedAt": "2026-03-15"
+      },
+      {
+        "id": "g008",
+        "round": "2025년4월",
+        "no": 34,
+        "subject": "2과목",
+        "concept": "피어슨 vs 스피어만 상관계수",
+        "correctAnswer": 1,
+        "keyPoint": "피어슨=실제값=이상치약함, 스피어만=순위=이상치강함",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
+      },
+      {
+        "id": "g009",
+        "round": "2025년4월",
+        "no": 35,
+        "subject": "2과목",
+        "concept": "로지스틱 회귀",
+        "correctAnswer": 1,
+        "keyPoint": "정규성 불필요, 종속변수=이진(O/X), 출력=0~1확률, 로짓함수=S자곡선",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
+      },
+      {
+        "id": "g010",
+        "round": "2025년4월",
+        "no": 36,
+        "subject": "2과목",
+        "concept": "요약변수 vs 파생변수",
+        "correctAnswer": 1,
+        "keyPoint": "요약=여러행합치기(합계,평균), 파생=한행계산(BMI)",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
+      },
+      {
+        "id": "g011",
+        "round": "2025년4월",
+        "no": 39,
+        "subject": "2과목",
+        "concept": "4가지 분석방법 (상관/회귀/카이제곱/ANOVA)",
+        "correctAnswer": 4,
+        "keyPoint": "상관=관계강도, 회귀=예측, 카이제곱=범주형, ANOVA=3개+그룹평균비교",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
+      },
+      {
+        "id": "g012",
+        "round": "2025년4월",
+        "no": 40,
+        "subject": "2과목",
+        "concept": "공분산",
+        "correctAnswer": 2,
+        "keyPoint": "독립→Cov=0(O), Cov=0→독립(X). 비선형관계 못잡음",
+        "correctCount": 0,
+        "addedAt": "2026-03-22"
+      },
+      {
+        "id": "w009",
+        "round": "2025년4월",
+        "no": 41,
+        "subject": "3과목",
+        "concept": "덴드로그램 군집 수 읽기",
+        "myAnswer": 1,
+        "correctAnswer": 2,
+        "keyPoint": "수평선이 자르는 세로선 개수 = 군집 수",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "w010",
+        "round": "2025년4월",
+        "no": 42,
+        "subject": "3과목",
+        "concept": "시계열 정상성",
+        "myAnswer": 4,
+        "correctAnswer": 2,
+        "keyPoint": "시계열 기본가정=정상성. 비정상성은 분석 부적합→차분으로 정상화",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "w011",
+        "round": "2025년4월",
+        "no": 44,
+        "subject": "3과목",
+        "concept": "배깅 vs 부스팅",
+        "myAnswer": 4,
+        "correctAnswer": 3,
+        "keyPoint": "배깅=병렬/분산↓/동일가중치, 부스팅=순차/편향↓/다른가중치",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "w012",
+        "round": "2025년4월",
+        "no": 45,
+        "subject": "3과목",
+        "concept": "PCA 주성분 분석",
+        "myAnswer": 4,
+        "correctAnswer": 1,
+        "keyPoint": "PCA는 분산 높은 축부터 선택. PC1=분산최대, 직교(90°)",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "w013",
+        "round": "2025년4월",
+        "no": 47,
+        "subject": "3과목",
+        "concept": "하이퍼파라미터 vs 파라미터",
+        "myAnswer": 2,
+        "correctAnswer": 4,
+        "keyPoint": "하이퍼파라미터=사람설정(K,은닉층,깊이). 가중치=학습되는 파라미터",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "w014",
+        "round": "2025년4월",
+        "no": 52,
+        "subject": "3과목",
+        "concept": "ReLU 활성화 함수",
+        "myAnswer": 3,
+        "correctAnswer": 4,
+        "keyPoint": "ReLU는 기울기 소실 해결용! 음수→0, 양수→그대로",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
+      },
+      {
+        "id": "g013",
+        "round": "2025년4월",
+        "no": 56,
+        "subject": "3과목",
+        "concept": "Attention 메커니즘",
+        "correctAnswer": 4,
+        "keyPoint": "Attention=중요한것에 높은가중치(동일X). 장기의존성/정보손실 해결",
+        "correctCount": 0,
+        "addedAt": "2026-03-29"
       }
     ]
   },
