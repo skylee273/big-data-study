@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import { studyItems, categories, StudyItem } from '@/data/studyData';
 import { questionBank, subjects, getQuestionsBySubject, getRandomQuestions, Question } from '@/data/questionBank';
 import diagramMap from '@/components/Diagrams';
+import { allConcepts as concepts, getConceptsBySubject, getConceptById, Concept } from '@/data/conceptsData';
+import ConceptCard from '@/components/ConceptCard';
+import ConceptModal from '@/components/ConceptModal';
 
 // Icons
 const Icons = {
@@ -104,6 +107,12 @@ export default function Home() {
   const [progress, setProgress] = useState<LearningProgress>(defaultProgress);
   const [sessionStartTime] = useState<Date>(new Date());
 
+  // Concept learning state
+  const [conceptSubject, setConceptSubject] = useState<1 | 2 | 3 | 4>(1);
+  const [selectedConcept, setSelectedConcept] = useState<Concept | null>(null);
+  const [completedConcepts, setCompletedConcepts] = useState<Set<string>>(new Set());
+  const [conceptSearchQuery, setConceptSearchQuery] = useState('');
+
   // Load saved state
   useEffect(() => {
     const saved = localStorage.getItem('bigdata-completedItems');
@@ -115,6 +124,11 @@ export default function Home() {
     const progressSaved = localStorage.getItem('bigdata-learningProgress');
     if (progressSaved) {
       setProgress(JSON.parse(progressSaved));
+    }
+
+    const conceptsSaved = localStorage.getItem('bigdata-completedConcepts');
+    if (conceptsSaved) {
+      setCompletedConcepts(new Set(JSON.parse(conceptsSaved)));
     }
 
     const today = new Date().toISOString().split('T')[0];
@@ -143,6 +157,10 @@ export default function Home() {
   useEffect(() => {
     localStorage.setItem('bigdata-learningProgress', JSON.stringify(progress));
   }, [progress]);
+
+  useEffect(() => {
+    localStorage.setItem('bigdata-completedConcepts', JSON.stringify([...completedConcepts]));
+  }, [completedConcepts]);
 
   useEffect(() => {
     const updateStudyTime = () => {
@@ -283,6 +301,48 @@ export default function Home() {
   };
 
   const currentBankQuestion = bankQuestions[bankIndex];
+
+  // Concept handlers
+  const filteredConcepts = getConceptsBySubject(conceptSubject).filter(c =>
+    !conceptSearchQuery ||
+    c.keyword.toLowerCase().includes(conceptSearchQuery.toLowerCase()) ||
+    c.category.toLowerCase().includes(conceptSearchQuery.toLowerCase())
+  );
+
+  const conceptProgress = Math.round(
+    (completedConcepts.size / concepts.length) * 100
+  );
+
+  const subjectConceptProgress = (subject: 1 | 2 | 3 | 4) => {
+    const subjectConcepts = getConceptsBySubject(subject);
+    const completed = subjectConcepts.filter(c => completedConcepts.has(c.id)).length;
+    return Math.round((completed / subjectConcepts.length) * 100);
+  };
+
+  const toggleConceptComplete = (conceptId: string) => {
+    const newSet = new Set(completedConcepts);
+    if (newSet.has(conceptId)) newSet.delete(conceptId);
+    else newSet.add(conceptId);
+    setCompletedConcepts(newSet);
+  };
+
+  const handleConceptNavigate = (direction: 'prev' | 'next') => {
+    if (!selectedConcept) return;
+    const currentIndex = filteredConcepts.findIndex(c => c.id === selectedConcept.id);
+    if (direction === 'prev' && currentIndex > 0) {
+      setSelectedConcept(filteredConcepts[currentIndex - 1]);
+    } else if (direction === 'next' && currentIndex < filteredConcepts.length - 1) {
+      setSelectedConcept(filteredConcepts[currentIndex + 1]);
+    }
+  };
+
+  const handleSelectConcept = (conceptId: string) => {
+    const concept = getConceptById(conceptId);
+    if (concept) {
+      setConceptSubject(concept.subject);
+      setSelectedConcept(concept);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
@@ -781,152 +841,112 @@ export default function Home() {
         {/* Concepts View */}
         {viewMode === 'concepts' && (
           <div className="max-w-4xl mx-auto space-y-6">
+            {/* Header Card */}
             <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-card p-6">
-              <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
-                💡 핵심 개념 정리
-              </h2>
-              <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-                기출문제에서 추출한 핵심 암기 포인트
-              </p>
-
-              {/* 1과목 개념 */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-primary-500 mb-3 flex items-center gap-2">
-                  📊 1과목: 빅데이터 분석 기획
-                </h3>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full border-collapse text-sm">
-                    <thead>
-                      <tr className="bg-gray-100 dark:bg-gray-700">
-                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">개념</th>
-                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">핵심 암기</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">집중형 vs 분산형</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="text-red-600 dark:text-red-400 font-bold">집중=느림</span>(본사),
-                          <span className="text-green-600 dark:text-green-400 font-bold">분산=빠름</span>(각부서)
-                        </td>
-                      </tr>
-                      <tr className="bg-gray-50 dark:bg-gray-750">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">DW 4대 특징</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-primary-500">주통시비</span> (주제지향성, 통합성, 시계열성, 비휘발성)
-                        </td>
-                      </tr>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">과제 도출 방식</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-primary-500">최솔통발</span>:
-                          최적화(OO), 솔루션(OX), 통찰(XO), 발견(XX)
-                        </td>
-                      </tr>
-                      <tr className="bg-gray-50 dark:bg-gray-750">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">분석 기획 순서</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-primary-500">비프수위</span> (비즈니스 → 프로젝트 → 수행계획 → 위험계획)
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white flex items-center gap-2">
+                  💡 개념 학습
+                </h2>
+                <div className="text-sm text-gray-500 dark:text-gray-400">
+                  전체 진행률: <span className="font-bold text-primary-500">{conceptProgress}%</span>
+                  ({completedConcepts.size}/{concepts.length})
                 </div>
               </div>
 
-              {/* 2과목 개념 */}
-              <div className="mb-8">
-                <h3 className="text-lg font-semibold text-primary-500 mb-3 flex items-center gap-2">
-                  📈 2과목: 빅데이터 탐색
-                </h3>
-                <div className="overflow-x-auto">
-                  <table className="min-w-full border-collapse text-sm">
-                    <thead>
-                      <tr className="bg-gray-100 dark:bg-gray-700">
-                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">개념</th>
-                        <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left">핵심 암기</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">이항분포</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-primary-500">평np 분npq</span> (평균=np, 분산=np(1-p))
-                        </td>
-                      </tr>
-                      <tr className="bg-gray-50 dark:bg-gray-750">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">LSA/LDA/PCA</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="text-blue-600 dark:text-blue-400 font-bold">LSA=SVD+잠재의미</span>,
-                          LDA=토픽모델링, PCA=분산최대화
-                        </td>
-                      </tr>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">IQR (사분위범위)</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-primary-500">Q3 - Q1</span>,
-                          이상치: ±1.5×IQR 벗어나면 이상치
-                        </td>
-                      </tr>
-                      <tr className="bg-gray-50 dark:bg-gray-750">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">표본추출</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="text-green-600 dark:text-green-400 font-bold">층화=내동외이</span>,
-                          <span className="text-orange-600 dark:text-orange-400 font-bold">군집=내이외동</span> (정반대!)
-                        </td>
-                      </tr>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">샘플링</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="text-red-600 dark:text-red-400">언더=정보손실</span>,
-                          <span className="text-orange-600 dark:text-orange-400">오버=과적합</span>
-                        </td>
-                      </tr>
-                      <tr className="bg-gray-50 dark:bg-gray-750">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">추정</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold">점추정=하나의 값</span>,
-                          <span className="font-bold">구간추정=신뢰구간</span> (신뢰도↑ 구간↑)
-                        </td>
-                      </tr>
-                      <tr className="bg-white dark:bg-gray-800">
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 font-medium">초기하분포</td>
-                        <td className="border border-gray-300 dark:border-gray-600 px-3 py-2">
-                          <span className="font-bold text-red-600 dark:text-red-400">비복원 → 종속(비독립)</span>
-                          <br/>
-                          <span className="text-xs text-gray-500">(이항분포=복원→독립)</span>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+              {/* Subject Tabs */}
+              <div className="flex gap-2 overflow-x-auto pb-2">
+                {([1, 2, 3, 4] as const).map((subject) => (
+                  <button
+                    key={subject}
+                    onClick={() => setConceptSubject(subject)}
+                    className={`px-4 py-2 rounded-lg font-medium transition-colors whitespace-nowrap flex items-center gap-2 ${
+                      conceptSubject === subject
+                        ? 'bg-primary-500 text-white'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    <span>{subject}과목</span>
+                    <span className={`text-xs px-1.5 py-0.5 rounded ${
+                      conceptSubject === subject
+                        ? 'bg-white/20'
+                        : 'bg-gray-200 dark:bg-gray-600'
+                    }`}>
+                      {subjectConceptProgress(subject)}%
+                    </span>
+                  </button>
+                ))}
               </div>
 
-              {/* 빠른 암기 카드 */}
-              <div className="mt-8 p-4 rounded-xl bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900/30 dark:to-purple-900/30">
-                <h3 className="font-bold text-gray-900 dark:text-white mb-3">⚡ 빠른 암기</h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {[
-                    { label: 'DW 특징', value: '주통시비' },
-                    { label: '과제도출', value: '최솔통발' },
-                    { label: '기획순서', value: '비프수위' },
-                    { label: '이항분포', value: '평np 분npq' },
-                    { label: 'IQR', value: 'Q3-Q1' },
-                    { label: '층화추출', value: '내동외이' },
-                    { label: '군집추출', value: '내이외동' },
-                    { label: '초기하', value: '비복원→종속' },
-                    { label: 'LSA', value: 'SVD+잠재의미' },
-                  ].map((item, i) => (
-                    <div key={i} className="p-2 bg-white dark:bg-gray-800 rounded-lg text-center">
-                      <div className="text-xs text-gray-500 dark:text-gray-400">{item.label}</div>
-                      <div className="font-bold text-primary-600 dark:text-primary-400">{item.value}</div>
-                    </div>
-                  ))}
+              {/* Search */}
+              <div className="relative mt-4">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">
+                  <Icons.Search />
                 </div>
+                <input
+                  type="text"
+                  placeholder="개념 검색..."
+                  value={conceptSearchQuery}
+                  onChange={(e) => setConceptSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-4 py-2 rounded-lg border border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500"
+                />
               </div>
-
             </div>
+
+            {/* Subject Info */}
+            <div className="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/30 dark:to-blue-900/30 rounded-xl p-4">
+              <div className="flex items-center gap-3">
+                <span className="text-3xl">
+                  {conceptSubject === 1 && '📊'}
+                  {conceptSubject === 2 && '🔍'}
+                  {conceptSubject === 3 && '🤖'}
+                  {conceptSubject === 4 && '📈'}
+                </span>
+                <div>
+                  <h3 className="font-bold text-gray-900 dark:text-white">
+                    {conceptSubject === 1 && '빅데이터 분석 기획'}
+                    {conceptSubject === 2 && '빅데이터 탐색'}
+                    {conceptSubject === 3 && '빅데이터 모델링'}
+                    {conceptSubject === 4 && '빅데이터 결과 해석'}
+                  </h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">
+                    {filteredConcepts.length}개 개념 | {filteredConcepts.filter(c => completedConcepts.has(c.id)).length}개 완료
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Concept Cards Grid */}
+            <div className="grid gap-3 sm:grid-cols-2">
+              {filteredConcepts.map((concept) => (
+                <ConceptCard
+                  key={concept.id}
+                  concept={concept}
+                  isCompleted={completedConcepts.has(concept.id)}
+                  onClick={() => setSelectedConcept(concept)}
+                />
+              ))}
+            </div>
+
+            {filteredConcepts.length === 0 && (
+              <div className="text-center py-12 text-gray-500 dark:text-gray-400">
+                검색 결과가 없습니다.
+              </div>
+            )}
           </div>
+        )}
+
+        {/* Concept Modal */}
+        {selectedConcept && (
+          <ConceptModal
+            concept={selectedConcept}
+            isCompleted={completedConcepts.has(selectedConcept.id)}
+            onClose={() => setSelectedConcept(null)}
+            onToggleComplete={() => toggleConceptComplete(selectedConcept.id)}
+            onNavigate={handleConceptNavigate}
+            onSelectConcept={handleSelectConcept}
+            hasPrev={filteredConcepts.findIndex(c => c.id === selectedConcept.id) > 0}
+            hasNext={filteredConcepts.findIndex(c => c.id === selectedConcept.id) < filteredConcepts.length - 1}
+          />
         )}
       </main>
 
