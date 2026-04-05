@@ -1,0 +1,7 @@
+{
+  "buildCommand": "cd big-data-exam-app && npm install && npm run build",
+  "outputDirectory": "big-data-exam-app/.next",
+  "installCommand": "cd big-data-exam-app && npm install",
+  "framework": "nextjs",
+  "rootDirectory": "big-data-exam-app"
+}
