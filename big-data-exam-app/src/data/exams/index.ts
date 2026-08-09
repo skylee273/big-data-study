@@ -5,7 +5,7 @@ import e2021_10 from './2021-10.json'
 import e2022_04 from './2022-04.json'
 import e2022_10 from './2022-10.json'
 import e2023_04 from './2023-04.json'
-import e2023_10 from './2023-10.json'
+import e2023_09 from './2023-09.json'
 import e2024_04 from './2024-04.json'
 import e2024_09 from './2024-09.json'
 import e2025_04 from './2025-04.json'
@@ -21,7 +21,7 @@ export const EXAMS: Exam[] = [
   e2025_04,
   e2024_09,
   e2024_04,
-  e2023_10,
+  e2023_09,
   e2023_04,
   e2022_10,
   e2022_04,
